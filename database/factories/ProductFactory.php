@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\{Product, Brand, Category};
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends Factory<Product>
  */
 class ProductFactory extends Factory
 {
@@ -17,7 +18,12 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'brand_id' => Brand::factory(),
+            'category_id' => Category::factory(),
+            'name' => $this->faker->word(),
+            'slug' => $this->faker->slug(),
+            'description' => $this->faker->text(1000),
+            'is_featured' => $this->faker->boolean(),
         ];
     }
 }
