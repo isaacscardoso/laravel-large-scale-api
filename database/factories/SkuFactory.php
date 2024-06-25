@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\{Sku, Product};
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Sku>
+ * @extends Factory<Sku>
  */
 class SkuFactory extends Factory
 {
@@ -17,7 +18,10 @@ class SkuFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_id' => Product::factory(),
+            'name' => $this->faker->word(),
+            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'quantity' => $this->faker->randomDigitNotNull(),
         ];
     }
 }
