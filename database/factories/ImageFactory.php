@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\{Image, Sku};
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
+ * @extends Factory<Image>
  */
 class ImageFactory extends Factory
 {
@@ -17,7 +18,9 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'sku_id' => Sku::factory(),
+            'url' => $this->faker->imageUrl(),
+            'is_cover' => $this->faker->boolean(),
         ];
     }
 }
