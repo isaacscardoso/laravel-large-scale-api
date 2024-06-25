@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\{OrderSku, Order, Sku};
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderSku>
+ * @extends Factory<OrderSku>
  */
 class OrderSkuFactory extends Factory
 {
@@ -17,7 +18,9 @@ class OrderSkuFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'order_id' => Order::factory(),
+            'sku_id' => Sku::factory(),
+            'quantity' => $this->faker->randomDigit(),
         ];
     }
 }
