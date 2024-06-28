@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Product;
+use App\Models\Sku;
 
 class ProductSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Product::factory()->has(Sku::factory()->hasImages(5)->count(3))->count(50)->create();
     }
 }
