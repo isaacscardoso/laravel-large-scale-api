@@ -57,8 +57,7 @@ class BrandController extends Controller
     public function update(BrandUpdateRequest $request, Brand $brand): JsonResponse
     {
         $request = $this->brandServices->update($request, $brand);
-        if ($request) return response()->json(['message' => 'Brand successfully updated!']);
-        return response()->json(['message' => 'Error updating brand!']);
+        return response()->json($request);
     }
 
     /**

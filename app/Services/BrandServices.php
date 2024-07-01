@@ -35,11 +35,12 @@ class BrandServices
      *
      * @param BrandUpdateRequest $request
      * @param Brand $brand
-     * @return bool
+     * @return Brand
      */
-    public function update(BrandUpdateRequest $request, Brand $brand): bool
+    public function update(BrandUpdateRequest $request, Brand $brand): Brand
     {
-        return $brand->update($request->validated());
+        $brand->update($request->validated());
+        return $brand;
     }
 
     /**
