@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
-use App\Services\BrandServices;
+use App\Services\BrandService;
 use App\Http\Requests\{BrandStoreRequest, BrandUpdateRequest};
 use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    public function __construct(protected BrandServices $brandServices)
+    public function __construct(protected BrandService $brandServices)
     {
     }
 
