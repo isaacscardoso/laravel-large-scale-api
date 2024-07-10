@@ -39,8 +39,8 @@ class BrandController extends Controller
         /** BrandPolicy rules for creation. */
         Gate::authorize('create', Brand::class);
 
-        $request = $this->brandService->store($request);
-        return response()->json($request);
+        $brand = $this->brandService->store($request);
+        return response()->json($brand);
     }
 
     /**
@@ -69,8 +69,8 @@ class BrandController extends Controller
         /** BrandPolicy rules for updating. */
         Gate::authorize('update', $brand);
 
-        $request = $this->brandService->update($request, $brand);
-        return response()->json($request);
+        $brand = $this->brandService->update($request, $brand);
+        return response()->json($brand);
     }
 
     /**
