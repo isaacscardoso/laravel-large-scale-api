@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\UserRole;
+use App\Enums\UserRoleEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class BrandUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()['role_id'] === UserRole::Admin;
+        return auth()->user()['role_id'] === UserRoleEnum::ADMIN;
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Support\Facades\Hash;
-use App\Enums\UserRole;
+use App\Enums\UserRoleEnum;
 use App\Models\User;
 
 class RegisteredUserController extends Controller
@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
-            'role_id' => UserRole::Customer,
+            'role_id' => UserRoleEnum::CUSTOMER,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->string('password')),
