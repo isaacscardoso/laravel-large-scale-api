@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
 use App\Services\BrandServices;
 use App\Http\Requests\{BrandStoreRequest, BrandUpdateRequest};
 use App\Models\Brand;
@@ -20,6 +21,9 @@ class BrandController extends Controller
      */
     public function index(): JsonResponse
     {
+        /** BrandPolicy rules to view all. */
+        Gate::authorize('viewAny', Brand::class);
+
         $brands = $this->brandServices->list();
         return response()->json($brands);
     }
@@ -32,6 +36,9 @@ class BrandController extends Controller
      */
     public function store(BrandStoreRequest $request): JsonResponse
     {
+        /** BrandPolicy rules for creation. */
+        Gate::authorize('create', Brand::class);
+
         $request = $this->brandServices->store($request);
         return response()->json($request);
     }
@@ -44,6 +51,9 @@ class BrandController extends Controller
      */
     public function show(Brand $brand): JsonResponse
     {
+        /** BrandPolicy rules for specific visualization. */
+        Gate::authorize('view', $brand);
+
         return response()->json($brand);
     }
 
@@ -56,6 +66,9 @@ class BrandController extends Controller
      */
     public function update(BrandUpdateRequest $request, Brand $brand): JsonResponse
     {
+        /** BrandPolicy rules for updating. */
+        Gate::authorize('update', $brand);
+
         $request = $this->brandServices->update($request, $brand);
         return response()->json($request);
     }
@@ -68,6 +81,9 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand): JsonResponse
     {
+        /** BrandPolicy rules for deletion. */
+        Gate::authorize('delete', $brand);
+
         $request = $this->brandServices->destroy($brand);
         if ($request) return response()->json(['message' => 'Brand deleted.']);
         return response()->json(['message' => 'Brand not deleted.']);
