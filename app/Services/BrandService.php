@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\{Model, Builder};
 use App\Http\Requests\{BrandStoreRequest, BrandUpdateRequest};
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class BrandServices
+class BrandService
 {
     /**
      * Returns a paginated list of Brands.
