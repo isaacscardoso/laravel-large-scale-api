@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
-enum UserRole: int
+enum UserRoleEnum: int
 {
-    case Admin = 1;
-    case Customer = 2;
+    case ADMIN = 1;
+    case CUSTOMER = 2;
 
     /**
      * Get the label for the role.
@@ -15,8 +15,8 @@ enum UserRole: int
     public function label(): string
     {
         return match ($this) {
-            UserRole::Admin => 'Admin',
-            UserRole::Customer => 'Customer',
+            UserRoleEnum::ADMIN => 'Admin',
+            UserRoleEnum::CUSTOMER => 'Customer',
         };
     }
 
@@ -28,13 +28,13 @@ enum UserRole: int
     public static function toArray(): array
     {
         return [
-            self::Admin->value => self::Admin->label(),
-            self::Customer->value => self::Customer->label(),
+            self::ADMIN->value => self::ADMIN->label(),
+            self::CUSTOMER->value => self::CUSTOMER->label(),
         ];
     }
 
     /**
-     * Get an instance of UserRole from a value.
+     * Get an instance of UserRoleEnum from a value.
      *
      * @param int $value
      * @return self
@@ -42,9 +42,9 @@ enum UserRole: int
     public static function fromValue(int $value): self
     {
         return match ($value) {
-            self::Admin->value => self::Admin,
-            self::Customer->value => self::Customer,
-            default => throw new \InvalidArgumentException("Invalid UserRole value: $value"),
+            self::ADMIN->value => self::ADMIN,
+            self::CUSTOMER->value => self::CUSTOMER,
+            default => throw new \InvalidArgumentException("Invalid UserRoleEnum value: $value"),
         };
     }
 }
