@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Brand;
 use Illuminate\Database\Eloquent\{Model, Builder};
 use App\Http\Requests\{BrandStoreRequest, BrandUpdateRequest};
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Models\Brand;
 
 class BrandService
 {
@@ -16,7 +16,7 @@ class BrandService
      */
     public function list(): LengthAwarePaginator
     {
-        return Brand::query()->paginate(10);
+        return Brand::paginate(10);
     }
 
     /**
@@ -27,7 +27,7 @@ class BrandService
      */
     public function store(BrandStoreRequest $request): Model|Builder
     {
-        return Brand::query()->create($request->validated());
+        return Brand::create($request->validated());
     }
 
     /**
