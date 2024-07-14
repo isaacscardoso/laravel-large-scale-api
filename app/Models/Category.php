@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static paginate(int $int)
+ * @method static create(mixed $validated)
+ */
 class Category extends Model
 {
     use HasFactory;

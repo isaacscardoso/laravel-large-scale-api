@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Category;
 use Illuminate\Database\Eloquent\{Model, Builder};
 use App\Http\Requests\{CategoryStoreRequest, CategoryUpdateRequest};
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Models\Category;
 
 class CategoryService
 {
@@ -16,7 +16,7 @@ class CategoryService
      */
     public function list(): LengthAwarePaginator
     {
-        return Category::query()->paginate(10);
+        return Category::paginate(10);
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryService
      */
     public function store(CategoryStoreRequest $request): Model|Builder
     {
-        return Category::query()->create($request->validated());
+        return Category::create($request->validated());
     }
 
     /**
