@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static paginate(int $int)
  * @method static create(array $data)
- * @property Sku $skus
+ * @property mixed $skus
  */
 class Product extends Model
 {
