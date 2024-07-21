@@ -2,10 +2,11 @@
 
 namespace App\Observers;
 
-use App\Models\Image;
+use Illuminate\Contracts\Events\ShouldHandleEventsAfterCommit;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Image;
 
-class ImageObserver
+class ImageObserver implements ShouldHandleEventsAfterCommit
 {
     /**
      * Handle the Image "created" event.
