@@ -135,16 +135,35 @@ class ProductService
     {
         return DB::transaction(function () use ($product) {
             $product->load('skus.images');
+            $skuIds = $product->skus->pluck('id');
 
-            $imageUrls = $product->skus->flatMap(function ($sku) {
-                return $sku->images->pluck('url');
-            })->all();
-
-            Storage::delete($imageUrls);
-            Image::query()->whereIn('sku_id', $product->skus->pluck('id'))->delete();
-            Sku::query()->where('product_id', $product['id'])->delete();
+            Image::query()->whereIn('sku_id', $skuIds)->each(fn($image) => $image->delete());
+            Sku::query()->whereIn('id', $skuIds)->delete();
 
             return $product->delete();
         });
     }
+
+//    /**
+//     * Removes the data of a product from the database.
+//     *
+//     * @param Product $product
+//     * @return bool
+//     */
+//    public function destroy(Product $product): bool
+//    {
+//        return DB::transaction(function () use ($product) {
+//            $product->load('skus.images');
+//            $imageUrls = $product->skus->flatMap(fn($sku) => $sku->images->pluck('url'))->all();
+//
+//            Storage::delete($imageUrls);
+//
+//            $skuIds = $product->skus->pluck('id');
+//
+//            Image::query()->whereIn('sku_id', $skuIds)->delete();
+//            Sku::query()->whereIn('id', $skuIds)->delete();
+//
+//            return $product->delete();
+//        });
+//    }
 }
